@@ -12,9 +12,9 @@ module ValidatesExistence
           it "requires #{association} exists" do
             reflection = subject.class.reflect_on_association(association)
             object = subject
-            object.send("#{reflection.primary_key_name}=", 0)
+            object.send("#{association}=", nil)
             object.should_not be_valid
-            object.errors[association.to_sym].should include("does not exist")
+            object.errors[reflection.primary_key_name.to_sym].should include("does not exist")
           end
         end
 
@@ -23,7 +23,7 @@ module ValidatesExistence
             it "allows #{association} to be nil" do
               reflection = subject.class.reflect_on_association(association)
               object = subject
-              object.send("#{reflection.primary_key_name}=", nil)
+              object.send("#{association}=", nil)
               object.should be_valid
             end
           end
