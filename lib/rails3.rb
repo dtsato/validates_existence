@@ -43,7 +43,7 @@ module Perfectline
               errors.push(normalized) unless errors.include? attribute
             end
             errors.each do | error |
-              record.errors.add(normalized, options[:message], :default => "does not exist")
+              record.errors.add(normalized, options[:message])
             end
           end
         end
