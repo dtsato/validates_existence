@@ -6,7 +6,7 @@ module ValidatesExistence
     
     module ClassMethods
       def should_validate_existence_of(*associations)
-        allow_nil = get_options!(associations, :allow_nil)
+        allow_nil = associations.extract_options![:allow_nil]
 
         associations.each do |association|
           it "requires #{association} exists" do
