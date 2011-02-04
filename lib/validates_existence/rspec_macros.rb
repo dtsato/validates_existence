@@ -1,5 +1,5 @@
 module ValidatesExistence
-  module TestCase
+  module RspecMacros
     def self.included(base)
       base.extend(ClassMethods)
     end
