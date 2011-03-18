@@ -24,7 +24,8 @@ module ValidatesExistence
               reflection = subject.class.reflect_on_association(association)
               object = subject
               object.send("#{association}=", nil)
-              object.should be_valid
+              object.valid?
+              object.errors[reflection.primary_key_name.to_sym].should_not include(I18n.t("activerecord.errors.messages.existence"))
             end
           end
         end
